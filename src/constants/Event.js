@@ -17,6 +17,7 @@ const EVENT = Object.freeze({
   },
   DISCOUNT: {
     D_DAY_START: 1000,
+    D_DAY_DAILY: 100,
     NOT_D_DAY: 2023,
     SPECIAL: 1000,
     PRESENT: 120000,
