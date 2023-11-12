@@ -52,6 +52,11 @@ class Customer {
     );
   }
 
+  #isOnlyDrink(array) {
+    const drink = Object.keys(MENU.DRINKS);
+    return array.every((item) => drink.includes(item));
+  }
+
   #validateOrder(order) {
     const seperatedArray = this.#seperateArray(order);
     const menu = this.#gatherMenu(seperatedArray);
@@ -62,7 +67,8 @@ class Customer {
       menu.length !== [...new Set(menu)].length ||
       isNaN(numbers.join('')) ||
       !numbers.every((number) => Number(number) > 0) ||
-      this.#isOverLimit(numbers)
+      this.#isOverLimit(numbers) ||
+      this.#isOnlyDrink(menu)
     );
   }
 
