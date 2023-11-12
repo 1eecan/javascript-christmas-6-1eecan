@@ -38,6 +38,11 @@ describe('Customer 클래스 테스트', () => {
       new Customer().getOrder('해산물파스타-12,레드와인-7,초코케이크-2');
     }).toThrow('[ERROR]');
   });
+  test('음료만 주문할 경우 에러 출력', () => {
+    expect(() => {
+      new Customer().getOrder('제로콜라-1,레드와인-7,샴페인-2');
+    }).toThrow('[ERROR]');
+  });
   test('방문 날짜가 31을 넘어갈 경우 에러 출력', () => {
     expect(() => {
       new Customer().getDate('32');
