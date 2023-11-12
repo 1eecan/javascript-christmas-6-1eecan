@@ -2,8 +2,6 @@ import EVENT from '../constants/Event.js';
 import MENU from '../constants/Menu.js';
 
 class Counter {
-  #totalBenefit;
-
   #order;
 
   #date;
@@ -22,6 +20,32 @@ class Counter {
     this.#event = this.#isEventOccured();
   }
 
+  getTotalAmount() {
+    return Object.keys(this.#order).reduce(
+      (acc, cur) => acc + this.#menuList[cur] * this.#order[cur],
+      0
+    );
+  }
+
+  getTotalBenefit() {
+    return (
+      this.dDayDiscount() +
+      this.weekdayDiscount() +
+      this.holidayDiscount() +
+      this.specialDiscount() +
+      this.presentEvent()
+    );
+  }
+
+  getTotalDiscount() {
+    return (
+      this.dDayDiscount() +
+      this.weekdayDiscount() +
+      this.holidayDiscount() +
+      this.specialDiscount()
+    );
+  }
+
   #isEventOccured() {
     return (
       Object.keys(this.#order).reduce(
@@ -29,15 +53,6 @@ class Counter {
         0
       ) >= EVENT.LIMITATION.TOTAL_AMOUNT
     );
-  }
-
-  #setTotalBenefit() {
-    this.#totalBenefit =
-      this.dDayDiscount() +
-      this.weekdayDiscount() +
-      this.holidayDiscount() +
-      this.specialDiscount() +
-      this.presentEvent();
   }
 
   dDayDiscount() {
@@ -84,14 +99,14 @@ class Counter {
   }
 
   isBadge() {
-    this.#setTotalBenefit();
-    if (this.#totalBenefit >= EVENT.BADGE.SANTA) {
+    const totalBenefit = this.getTotalBenefit();
+    if (totalBenefit >= EVENT.BADGE.SANTA) {
       return EVENT.BADGE.SANTA;
     }
-    if (this.#totalBenefit >= EVENT.BADGE.TREE) {
+    if (totalBenefit >= EVENT.BADGE.TREE) {
       return EVENT.BADGE.TREE;
     }
-    if (this.#totalBenefit >= EVENT.BADGE.STAR) {
+    if (totalBenefit >= EVENT.BADGE.STAR) {
       return EVENT.BADGE.STAR;
     }
     return false;
