@@ -31,6 +31,13 @@ const EVENT = Object.freeze({
     TOTAL_AMOUNT: 10000,
     TOTAL_MENU_NUMBER: 20,
   },
+  MESSAGE: {
+    D_DAY: (price) => `크리스마스 디데이 할인: -${price}원`,
+    WEEKDAY: (price) => `평일 할인: -${price}원`,
+    HOLIDAY: (price) => `주말 할인: -${price}원`,
+    SPECIAL: (price) => `특별 할인: -${price}원`,
+    PRESENT: (price) => `증정 이벤트: -${price}원`,
+  },
 });
 
 export default EVENT;
