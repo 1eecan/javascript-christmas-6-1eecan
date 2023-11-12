@@ -1,4 +1,4 @@
-const MENU_NAME = Object.freeze({
+const MENU = Object.freeze({
   APPETIZER: {
     양송이수프: 6000,
     타파스: 5500,
@@ -21,4 +21,4 @@ const MENU_NAME = Object.freeze({
   },
 });
 
-export default MENU_NAME;
+export default MENU;
